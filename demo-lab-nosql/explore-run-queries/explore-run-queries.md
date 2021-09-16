@@ -1,15 +1,15 @@
-# Explore Data and Run Queries
+# Explore Data, Run Queries
 
 ## Introduction
 
-This lab picks up where lab 3 left off.   We are going to explore in more detail the tables we created, load data with functions, and execute queries a python application.  
+This lab picks up where lab 3 left off.   We are going to explore in more detail the tables we created, load data, and execute queries using a python application.  
 
 Estimated Time: 25 minutes
 
 ### Objectives
 
 * Understand the different tables
-* Read data with REST api
+* Read data with REST API
 * Read data with a python application
 
 ### Prerequisites
@@ -17,8 +17,7 @@ Estimated Time: 25 minutes
 * An Oracle Free Tier, Always Free, or Paid Cloud Account
 * Connection to the Oracle NoSQL Database Cloud Service
 * Working knowledge of bash shell
-* Working knowledge of vi, emacs
-* Working knowledge of Python
+* Working knowledge of SQL language
 
 
 ## Task 1: Restart the Cloud Shell
@@ -30,9 +29,9 @@ Estimated Time: 25 minutes
 2. Execute the following environment setup shell script in the Cloud Shell to set up your environment. If you close/open the Cloud Shell Console, please re-execute it.
 
     ```
-    <copy>
-    source ~/serverless-with-nosql-database/env.sh
-    </copy>
+    
+    source ~/demo-lab-nosql/env.sh
+    
     ```
 
 ## Task 2: Load Data and Examine It
@@ -44,129 +43,132 @@ The goal of this task is to understand the difference between the 2 data models 
 1. Install the Node.js application.  Execute in the Cloud Shell.
 
     ```
-    <copy>
-    cd ~/serverless-with-nosql-database/express-nosql
+    
+    cd ~/demo-lab-nosql/express-nosql
     npm install
     node express_oracle_nosql.js &
-    </copy>
+    
     ```
-    **Note:** This will start the express_oracle_nosql application in the background.
+    **Note:** This will start the "express-oracle-nosql" application in the background.
 
-2. After you step 1, you will see a message in the shell saying 'application running'
+2. After you complete step 1, you will see a message in the shell saying 'application running'
 
     ![](./images/appl-running.png)
 
-    Hit the 'Enter' key on your keypad to get the command line prompt back.   
+    Hit the **'Enter' key** on your keypad to get the command line prompt back.   
 
 3. Insert data into the demo table.   
 
-  This will be done using a curl command to transfer data over the network to the NoSQL backend using the express_oracle_nosql application.  Execute in Cloud Shell.
+  This will be done using a curl command to transfer data over the network to the NoSQL backend using the "express-oracle-nosql" application.  Execute in Cloud Shell.
 
-  ```
-  <copy>
-  FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file99.json`
-  curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demo
-  FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file9.json`
-  curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demo
-  FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file103.json`
-  curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demo
-  FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file2.json`
-  curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demo
-  FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file84.json`
-  curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demo
-  </copy>
-  ```
+    ```
+    
+    FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file99.json`
+    curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demo
+    FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file9.json`
+    curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demo
+    FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file103.json`
+    curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demo
+    FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file2.json`
+    curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demo
+    FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file84.json`
+    curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demo
+    
+    ```
 4.  Insert data into the demoKeyVal table.  Execute in Cloud Shell.
 
-  ````
-  <copy>
-  FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file99.json`
-  curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demoKeyVal
-  FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file9.json`
-  curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demoKeyVal
-  FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file103.json`
-  curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demoKeyVal
-  FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file2.json`
-  curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demoKeyVal
-  FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file84.json`
-  curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demoKeyVal
-  </copy>
-  ````
+    ````
+    
+    FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file99.json`
+    curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demoKeyVal
+    FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file9.json`
+    curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demoKeyVal
+    FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file103.json`
+    curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demoKeyVal
+    FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file2.json`
+    curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demoKeyVal
+    FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file84.json`
+    curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demoKeyVal
+    
+    ````
 5.  Read back the data that we just entered.  Execute in the Cloud Shell.  In the second two queries, we use a limit clause which limits the number of rows returned.  We also use an orderby clause to sort the returned results.
 
-  ````
-  <copy>
-  curl -X GET http://localhost:3000/demo  | jq
-  </copy>
-  ````
+    ````
+    
+    curl -X GET http://localhost:3000/demo  | jq
+    
+    ````
 
-  ````
-  <copy>
-  curl  "http://localhost:3000/demo?limit=3&orderby=ticketNo"  | jq
-  </copy>
-  ````
+    ````
+    
+    curl  "http://localhost:3000/demo?limit=3&orderby=ticketNo"  | jq
+    
+    ````
 
-  ````
-  <copy>
-  curl  "http://localhost:3000/demo?limit=12&orderby=fullName"  | jq
-  </copy>
-  ````
+    ````
+    
+    curl  "http://localhost:3000/demo?limit=12&orderby=fullName"  | jq
+    
+    ````
 6. Read Data for a specific TicketNumber using GET command.  Execute in Cloud Shell.
 
-  ````
-  <copy>
-  curl -X GET http://localhost:3000/demo/1762322446040  | jq
-  </copy>
-  ````
-7. In the baggage tracking demo from Lab 1, which is running live in all the regions, a Node.js application was running on the background.   We can install that application, and run it on our data.  It uses a different port number than the previous application we installed.  It will also run in the background, so hit 'Enter' to get the prompt back.  Execute in Cloud Shell.
+    ````
+    
+    curl -X GET http://localhost:3000/demo/1762322446040  | jq
+    
+    ````
+7. In the baggage tracking demo from Lab 1, which is running live in all the regions, a Node.js application was running on the background.   We can install that application, and run it on our data.  It uses a different port number than the previous application we installed.  It will also run in the background, so **hit 'Enter'** to get the prompt back.  Execute in Cloud Shell.
 
-  ````
-  <copy>
-  cd ~/serverless-with-nosql-database/express-nosql
-  npm install
-  node express_baggage_demo_nosql.js &
-  </copy>
-  ````
+    ````
+    
+    cd ~/demo-lab-nosql/express-nosql
+    npm install
+    node express_baggage_demo_nosql.js &
+    
+    ````
 
 8. We can run a query by ticket number and passengers on a flight.  Execute in Cloud Shell.
 
-  ````
-  <copy>
-  curl -X GET http://localhost:3500/getBagInfoByTicketNumber?ticketNo=1762322446040  | jq
-  </copy>
-  ````
+    ````
+    
+    curl -X GET http://localhost:3500/getBagInfoByTicketNumber?ticketNo=1762322446040  | jq
+    
+    ````
 
-  ````
-  <copy>
-  curl -X GET http://localhost:3500/getBagInfoByTicketNumber  | jq
-  </copy>
-  ````
+    ````
+    
+    curl -X GET http://localhost:3500/getBagInfoByTicketNumber  | jq
+    
+    ````
 
-  ````
-  <copy>
-  curl -X GET http://localhost:3500/getBagInfoByTicketNumber | jq '. | length'
-  </copy>
-  ````
+    ````
+    
+    curl -X GET http://localhost:3500/getBagInfoByTicketNumber | jq '. | length'
+    
+    ````
 
-  ````
-  <copy>
-  curl -X GET http://localhost:3500/getPassengersAffectedByFlight?flightNo=BM715  | jq
-  </copy>
-  ````
+    ````
+    
+    curl -X GET http://localhost:3500/getPassengersAffectedByFlight?flightNo=BM715  | jq
+    
+    ````
+  Each of these produced slightly different results. The first one display the document with a specific ticket number, the second displayed all the records and the third gave a count of the records.
+
+  For the last one,  you can see in the field "message" the getPassengersAffectedByFlight endpoint is still under construction. In other words the code for that endpoint has not been completed yet.
 
 9. You can also execute sql statements using OCI CLI commands.  Going this route, you will be querying the data over REST.  Execute in Cloud Shell.
 
     ````
-    <copy>
-    SQL_STATEMENT=$(cat ~/serverless-with-nosql-database/objects/query1.sql | tr '\n' ' ')
+    
+    SQL_STATEMENT=$(cat ~/demo-lab-nosql/objects/query1.sql | tr '\n' ' ')
     echo "$SQL_STATEMENT"
-    </copy>
+    
     ````
 
     ````
-    <copy>
+    
     oci nosql query execute -c  $COMP_ID --statement "$SQL_STATEMENT"
-    </copy>
+    
     ````
   In this case, the data is formatted as a nice JSON document.
 
@@ -176,18 +178,18 @@ The goal of this task is to understand the difference between the 2 data models 
 1. Create the python CLI application in the Cloud shell.  Execute in Cloud Shell.
 
     ```
-    <copy>
-    source ~/serverless-with-nosql-database/env.sh
-    cd ~/serverless-with-nosql-database/
+    
+    source ~/demo-lab-nosql/env.sh
+    cd ~/demo-lab-nosql/
     pip3 install borneo
     pip3 install cmd2  
-    </copy>
+    
     ```
 
     ```
-    <copy>
+    
     python3 nosql.py -s cloud -t $OCI_TENANCY -u $NOSQL_USER_ID -f $NOSQL_FINGERPRINT -k ~/NoSQLLabPrivateKey.pem -e https://nosql.${OCI_REGION}.oci.oraclecloud.com
-    </copy>
+    
     ```
 2.  This will create a Pyhton NoSQL shell that you can load data or execute queries in.
 
@@ -196,60 +198,62 @@ The goal of this task is to understand the difference between the 2 data models 
 
 3. Load additional data so we can run some queries.  Execute in Cloud Shell.
 
-  ````
-  <copy>
-  load ../BaggageData/load_multi_line.json demo
-  </copy>
-  ````
+    ````
+    
+    load ../BaggageData/load_multi_line.json demo
+    
+    ````
 
 4. Execute the following queries.  Execute in Cloud Shell.
 
     ````
-    <copy>
+    
     SELECT *
     FROM demo d
     WHERE d.bagInfo.flightLegs.flightNo =ANY 'BM715';
-    </copy>
+    
     ````
 
     ````
-    <copy>
+    
     SELECT d.fullName, d.contactPhone, d.ticketNo , d.bagInfo.flightLegs.flightNo as bagInfo
     FROM demo d
     WHERE d.bagInfo.flightLegs.flightNo =ANY 'BM715';
-    </copy>
+    
     ````
 
     ````
-    <copy>
+    
     SELECT d.fullName, d.contactPhone, d.ticketNo , d.bagInfo.flightLegs.flightNo as bagInfo
     FROM demo d
     WHERE d.bagInfo.flightLegs.flightNo =ANY "BM715"
     AND d.bagInfo.flightLegs.flightNo =ANY "BM204";
-    </copy>
+    
     ````
 
     ````
-    <copy>
+    
     SELECT d.fullName, d.contactPhone, d.ticketNo , d.bagInfo.flightLegs.flightNo as bagInfo
     FROM   demo d
     WHERE  d.bagInfo.flightLegs.flightNo =ANY "BM715"
     AND    d.bagInfo.flightLegs.flightNo =ANY "BM204"
     AND    size(d.bagInfo.flightLegs) = 2;
-    </copy>
+    
     ````
 
 5. Write queries to answer the following questions.
 
-  * How many xxx
-  * Which passenger xxx
-  * how many bags on flightNo xxx
+  * Retrieve the names and phone numbers for passengers that had a bag with any action on any flight leg that occurred at the Sydney Airport(SYD).  Hint: Every record has an actions array at: bagInfo.flightLegs.actions
+  * Find the number of bags on flight BM715.  Hint: The size of the bagInfo array represents the number of bags a passenger has checked.
 
-    **Note:** The Learn More contains a link to the SQL Reference Guide.
+    **Note:** The Learn More contains a link to the SQL Reference Guide.  Lab 3, Task 3 contains an example of the JSON record to look at.
+    
+6. Type in **exit** to exit from the python application.
 
-6. Minimize the Cloud Shell by hitting the minimize key.
+7. Minimize the Cloud Shell by hitting the minimize key.
 
-## Task 6: Clean Up
+
+## Task 4: Clean Up
 
 This task deletes the tables that got created.
 

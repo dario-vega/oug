@@ -1,4 +1,4 @@
-# Create Tables and Load Tables
+# Create Tables, Load Tables
 
 ## Introduction
 
@@ -59,57 +59,58 @@ In this task we are going to create tables using the Cloud Shell, and OCI CLI in
 
     ![](./images/cloud-shell-phoenix.png)
 
-  Execute the following in your Cloud Shell. {MJB: need to source this from object storage - after testing done}
+  Execute the following in your Cloud Shell.
 
     ````
-    <copy>
+    
       git clone https://github.com/dario-vega/demo-lab-nosql
-      mv demo-lab-nosql serverless-with-nosql-database
-      sh ~/serverless-with-nosql-database/data.sh
-      cp ~/NoSQLLabPrivateKey.pem  ~/serverless-with-nosql-database/express-nosql
-      cp ~/info.json ~/serverless-with-nosql-database/express-nosql
-    </copy>
+      sh ~/demo-lab-nosql/data.sh
+      cp ~/NoSQLLabPrivateKey.pem  ~/demo-lab-nosql/express-nosql
+      cp ~/info.json ~/demo-lab-nosql/express-nosql
+    
     ````
 
 2. Execute the following environment setup shell script in the Cloud Shell. If you close/open the Cloud Shell Console, please re-execute it.
 
     ```
-    <copy>
-    source ~/serverless-with-nosql-database/env.sh
-    </copy>
+    
+    source ~/demo-lab-nosql/env.sh
+    
     ```
 
 3. Let's create NoSQL tables using the OCI CLI. The CLI command for Oracle NoSQl is 'oci nosql <command>'.  We will create two different tables and  echo the DDL statements so you can see what is being created.  One of the tables is a fixed schema table and the other is a JSON document table.  To create the always free table using the OCI CLI, you specify the --is-auto-reclaimable flag, as shown in the code below.
 
     ```
-    <copy>
-    cd ~/serverless-with-nosql-database/objects
+    
+    cd ~/demo-lab-nosql/objects
     DDL_TABLE=$(cat demo.nosql)
     echo $DDL_TABLE
-    </copy>
+    
     ```
 
     ```
-    <copy>
+    
     oci nosql table create --compartment-id "$COMP_ID"   \
     --name demo --ddl-statement "$DDL_TABLE" \
     --is-auto-reclaimable true \
-    --table-limits="{\"maxReadUnits\": 50,  \"maxStorageInGBs\": 25,  \"maxWriteUnits\": 50 }"
-    </copy>
+    --table-limits="{\"maxReadUnits\": 50,  \"maxStorageInGBs\": 25,  \"maxWriteUnits\": 50 }" \
+    --wait-for-state SUCCEEDED --wait-for-state FAILED
+    
     ```
     ```
-    <copy>
+    
     DDL_TABLE=$(cat demoKeyVal.nosql)
     echo $DDL_TABLE
-    </copy>
+    
     ```
     ```
-    <copy>
+    
     oci nosql table create --compartment-id "$COMP_ID"   \
     --name demoKeyVal  --ddl-statement "$DDL_TABLE" \
     --is-auto-reclaimable true \
-    --table-limits="{\"maxReadUnits\": 50,  \"maxStorageInGBs\": 25,  \"maxWriteUnits\": 50 }"
-    </copy>
+    --table-limits="{\"maxReadUnits\": 50,  \"maxStorageInGBs\": 25,  \"maxWriteUnits\": 50 }" \
+    --wait-for-state SUCCEEDED --wait-for-state FAILED
+    
     ```
 
 4. Minimize the Cloud Shell by clicking on the minimization button.
@@ -148,7 +149,7 @@ In this task we are going to create tables using the Cloud Shell, and OCI CLI in
   Copy/Paste the json Baggage document below in JSON input text box.  Because this Json document is complex, it is easiest to copy/paste into the field.  However, you could have typed it all in.
 
     ````
-    <copy>
+    
     {
       "fullName" : "Abram Falls",
       "contactPhone" : "921-284-5378",
@@ -205,13 +206,13 @@ In this task we are going to create tables using the Cloud Shell, and OCI CLI in
         "bagArrivalDate" : "2019.03.01 at 03:06:00 GMT"
       } ]
     }
-    </copy>
+    
     ````
 
 
 8. Click on 'Insert Row' at bottom left of screen.
 
-You have seen two different ways to insert data into a table.  
+  To quickly summarize, in this Lab you have seen two different ways to insert data into a table.  
 
 ## Task 4:  Show Data From the Console
 

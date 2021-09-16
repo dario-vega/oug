@@ -11,8 +11,9 @@ Estimated Time: 5 minutes
 
 In this lab you will:
 * Create a compartment
-* Create API Key and Authorization tokens
+* Create API Key
 * Learn about Credentials, and Policies
+* Set up Cloud Shell
 
 ### Prerequisites
 
@@ -38,7 +39,7 @@ This lab assumes you have:
     ![](images/create-compartment.png)
 
 
-## Task 2: Create an API Key and Auth Token For Your User
+## Task 2: Create an API Key For Your User
 
 1. Top right, click on your Profile -> User Settings.
 
@@ -56,17 +57,21 @@ This lab assumes you have:
 
     ![](images/capturecloudshellhomeregion.png)
 
-4. Execute these commands in your Cloud Shell.  Replace "YOURUSEROCID" with your OCID you copied above **before** executing.
+4. Execute these commands in your Cloud Shell.  **Replace** "YOURUSEROCID" with your OCID you copied above **before** executing.
 
     ````
-    <copy>
+    
     openssl genrsa -out NoSQLLabPrivateKey.pem  4096        
     openssl rsa -pubout -in NoSQLLabPrivateKey.pem -out NoSQLLabPublicKey.pem
     oci iam user api-key upload --user-id YOURUSEROCID --key-file NoSQLLabPublicKey.pem > info.json
-    </copy>
+    
     ````
     If you execute the 'oci iam' command before replacing "YOURUSEROCID" then you will get the following error:
-    **"Authorization failed or requested resource not found".**   Replace "YOURUSEROCID" and try the last command again.    
+    **"Authorization failed or requested resource not found".**   Replace "YOURUSEROCID" and try the last command again.  
+
+    If you execute the 'oci iam' command and you get this error "ApiKeyLimitExceeded" then you need to delete some keys you already created.  Go to your user details screen, and API Keys to find old keys to delete.
+
+5. Exit Cloud Shell  
 
 ## Task 3: Understand Credentials, and Policies
 
@@ -79,7 +84,7 @@ In this node.js snippet, we used the credential information created in Task 2 an
 ````
        return new NoSQLClient({
             region: Region.EU_FRANKFURT_1,
-			compartment:'ocid1.compartment.oc1..aaaaaaaamg....y3hsyi57paa',
+			compartment:'demonosql',
             auth: {
                 iam: {
                     tenantId: 'ocid1.tenancy.oc1..aaaaaaaahrs4avamaxisc...........slpsdb2d2xe2kp2q',
@@ -91,13 +96,13 @@ In this node.js snippet, we used the credential information created in Task 2 an
         });
 ````
 
-  Another way to handle authentication is with Instance and Resource Principals.   The Oracle NoSQL SDKs support both of them.  Resource principals are tied to functions.    We are not using functions in this workshop so we will not discuss those any further.
+  Another way to handle authentication is with Instance and Resource Principals.   The Oracle NoSQL SDKs support both of them.  Resource principals are primarily used when authenticating from functions.  We are not using functions in this workshop so we will not discuss those any further.
 
-  Instance Principals is a capability in Oracle Cloud Infrastructure Identity and Access Management (IAM) that lets you make service calls from an instance. With instance principals, you don’t need to configure user credentials or rotate the credentials. Instances themselves are a principal type in IAM and are set up in IAM.  You can think of them as an IAM service feature that enables instances to be authorized actors (or principals) to perform actions on service resources.  Oracle NoSQL Database Cloud service has three different resource types, namely, nosql-tables, nosql-rows, and nosql-indexes.  It also has one aggregate resource called nosql-family.  
+  Instance Principals is a capability in Oracle Cloud Infrastructure Identity and Access Management (IAM) that lets you make service calls from an instance. With instance principals, you don’t need to configure user credentials or rotate the credentials. Instances themselves are a principal type in IAM and are set up in IAM.  You can think of them as an IAM service feature that enables instances to be authorized actors (or principals) to perform actions on service resources.  
 
-  Policies are created that allow a group to work in certain ways with specific types of resources such as NoSQL Tables in a particular compartment.  All NoSQL Tables belong to a defined compartment.  In Task 1 of this Lab, we created the demonosql compartment and this is where we will create our tables.  
+  Oracle NoSQL Database Cloud service has three different resource types, namely, nosql-tables, nosql-rows, and nosql-indexes.  It also has one aggregate resource called nosql-family.  Policies are created that allow a group to work in certain ways with specific types of resources such as nosql-tables in a particular compartment.  All NoSQL tables belong to a defined compartment.  In Task 1 of this Lab, we created the demonosql compartment and this is where we will create our tables.  
 
-  You can use **Resource Principals** to do the connection to NoSQL Cloud Service as shown below in the Node.js and Python examples instead of specifying the credentials.  Once they are set up, they are very simple use because all you need to do is call the appropriate authorization constructor.
+  You can use **Resource Principals** to do the connection to NoSQL Cloud Service as shown below in the Node.js and Python examples instead of specifying the credentials.  Once they are set up, they are very simple to use because all you need to do is call the appropriate authorization constructor.
 
 In this snippet, there are hard-coded references (eg REGION).
 
@@ -106,7 +111,7 @@ In this snippet, there are hard-coded references (eg REGION).
 function createClientResource() {
   return  new NoSQLClient({
     region: Region.EU_FRANKFURT_1,
-    compartment:'ocid1.compartment.oc1..aaaaaaaafml3tc......jimgx3cdnirgup6rhptxwnandq',
+    compartment:'demonosql',
     auth: {
         iam: {
             useResourcePrincipal: true
@@ -122,7 +127,7 @@ def get_handle():
      config = borneo.NoSQLHandleConfig('eu-frankfurt-1', provider).set_logger(None)
      return borneo.NoSQLHandle(config)
 ```
-In the next labs we are going to be running application code and we need an instance to run that from.   In Task 2 we started the Cloud Shell which is the instance where we will run the application.   Currently, Cloud Shell does not support Instance Principals so in those labs we are using credentials.
+In the next labs we are going to be running application code and we need an instance to run that from.   In Task 2 we started the Cloud Shell and we will run the application from that instance.   Currently, Cloud Shell does not support Instance Principals so in those labs we will be using credentials.
 
 ## Task 4: Move to Phoenix
 
