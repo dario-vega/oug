@@ -26,36 +26,36 @@ This lab assumes you have:
 
 1. Log into the OCI console using your tenancy.  Please make note of what region you are at.
 
-    ![](images/console-image.png)
+    ![](./images/console-image.png)
 
 2. On left side drop down (left of Oracle Cloud banner), go to Identity & Security and then Compartments.
 
-    ![](images/identity-security-compartment.png)
+    ![](./images/identity-security-compartment.png)
 
 3. Click on Create Compartment. This opens up a new window.
 
   Enter **demonosql** as compartment name, enter a description and hit 'Create Compartment' button at bottom of window.  The parent compartment will display your current parent compartment -- this does not need to be changed.  You can change your parent if you want to be under a different parent compartment.
 
-    ![](images/create-compartment.png)
+    ![](./images/create-compartment.png)
 
 
 ## Task 2: Create an API Key For Your User
 
 1. Top right, click on your Profile -> User Settings.
 
-  ![](images/user-profile.png)
+  ![]./(images/user-profile.png)
 
 2. Click 'User Settings' again. Copy your OCID.   **Make sure to save your OCID for future steps**. Paste it into notepad, some text file, etc. as it will be used in Step 4.
 
-    ![](images/user-ocid.png)
+    ![](./images/user-ocid.png)
 
 3. Open the Cloud Shell in the top right menu.  It can take about 2 minutes to get the Cloud Shell started.  
 
-    ![](images/cloud-shell.png)
+    ![](./images/cloud-shell.png)
 
   **Note:** This needs to be executed in the **HOME region**.  Please ensure you are in your home region.  The Cloud Shell prompt shows you what region the shell is running out of.
 
-    ![](images/capturecloudshellhomeregion.png)
+    ![](./images/capturecloudshellhomeregion.png)
 
 4. Execute these commands in your Cloud Shell.  **Replace** "YOURUSEROCID" with your OCID you copied above **before** executing.
 
