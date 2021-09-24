@@ -22,9 +22,9 @@ In this workshop you will:
 
 ### Lab
 
-* [setup-environment](oug/serverless-with-nosql-database/setup-environment/setup-environment.md) - 10 min
-* [create-populate-tables](oug/serverless-with-nosql-database/create-populate-tables/create-populate-tables.md)  - 20 min
-* [explore-run-queries](oug/serverless-with-nosql-database/explore-run-queries/explore-run-queries.md) - 20 min
+* [setup-environment](./serverless-with-nosql-database/setup-environment/setup-environment.md) - 10 min
+* [create-populate-tables](./serverless-with-nosql-database/create-populate-tables/create-populate-tables.md)  - 20 min
+* [explore-run-queries](./serverless-with-nosql-database/explore-run-queries/explore-run-queries.md) - 20 min
 
 Estimated Time: 50 Minutes
 
@@ -41,9 +41,9 @@ In this workshop you will:
 
 ### Lab
 
-* [setup-environment](oug/demo-lab-nosql/setup-environment/setup-environment.md) - 5 min
-* [create-populate-tables](oug/demo-lab-nosql/create-populate-tables/create-populate-tables.md)  - 20 min
-* [explore-run-queries](oug/demo-lab-nosql/explore-run-queries/explore-run-queries.md)  - 20 min
+* [setup-environment](./demo-lab-nosql/setup-environment/setup-environment.md) - 5 min
+* [create-populate-tables](./demo-lab-nosql/create-populate-tables/create-populate-tables.md)  - 20 min
+* [explore-run-queries](./demo-lab-nosql/explore-run-queries/explore-run-queries.md)  - 20 min
 
 Estimated Time: 45 Minutes
 
