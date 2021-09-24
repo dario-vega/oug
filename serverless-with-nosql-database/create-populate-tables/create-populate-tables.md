@@ -20,6 +20,8 @@ Estimated Time: 25 minutes
 
 ## Task 1: Create an Oracle NoSQL Table With the Console
 
+## Task 1: Create an Oracle NoSQL Table With the Console
+
 1. On the OCI menu drop down on the left, go to Databases and then hit 'Tables' under Oracle NoSQL Database.  This brings you to the 'Table' screen where you can create a table from the console.
 
 ![](./images/nosql-tables.png)
@@ -30,11 +32,19 @@ Estimated Time: 25 minutes
 
 This screen allows you to create tables in one of two different ways, either using simple input or using DDL input.  For this Lab we are going to use the simple input method.  
 
-3. The first thing you want to do is click the 'Always Free Configuration' toggle button.  This will create an always free table.   Each tenancy is allowed 3 always free tables.  Always free tables have fixed provisioning at 50 read units, 50 write units and 25 GB of storage.  We have mentioned several times in this workshop that you want to be in the Phoenix region.  NoSQL always free tables are only available in the Phoenix region and you need to be in the correct region to use them.
+3. The first thing you want to do is click the 'Always Free Configuration' toggle button.  This will create an always free table.   Each tenancy is allowed 3 always free tables.  Always free tables have fixed provisioning at 50 read units, 50 write units and 25 GB of storage. NoSQL always free tables are only available in the **Phoenix region** and you need to be in the correct region to use them.  The toggle button only shows up in the Phoenix region.
 
 ![](./images/always-free.png)
 
-Clicking on the 'Always Free Configuration' button grays out the boxes to input provisioning.  Next enter a name for your table, a primary key and column. For this example, we used freeTest as the name, pkey with a type of integer as the primary key, and name with a type string as an additional column.  Click 'Set as a Shard Key'.
+Clicking on the 'Always Free Configuration' button grays out the boxes to input provisioning.  
+
+**If you are not in Phoenix**
+
+Please set the following values in the boxes to input provisioning: 50 read units, 50 write units and 25 GB of storage
+
+The free tier allows but default to have only one region.
+
+Next enter a name for your table, a primary key and column. For this example, we used freeTest as the name, pkey with a type of integer as the primary key, and name with a type string as an additional column.  Click 'Set as a Shard Key'.
 
 4. When done with inputs click on 'Create Table' at the bottom.
 
@@ -51,7 +61,7 @@ In summary, this screen allows to create a table with multiple columns for the p
 
 In this task we are going to create tables using the Cloud Shell, and OCI CLI interface.   The OCI CLI commands issued from the Cloud Shell make REST calls to the Oracle NoSQL Database Cloud Service (NDCS).  OCI offers several SDKs in different languages that you can use to make REST calls to NDCS.   To make things a little simpler, we have created some shell scripts and files that will assist you in this Task.  We need to download those to the Cloud Shell first.
 
-1. Open the Cloud Shell from the top right menu.  Please make sure you are in the Phoenix region.
+1. Open the Cloud Shell from the top right menu.  
 
 ![](./images/cloud-shell-phoenix.png)
 
