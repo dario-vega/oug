@@ -36,10 +36,11 @@ This screen allows you to create tables in one of two different ways, either usi
 
 Clicking on the 'Always Free Configuration' button grays out the boxes to input provisioning.  
 
-If you are not in Phoenix
+**If you are not in Phoenix**
 
 Please set the following values in the boxes to input provisioning: 50 read units, 50 write units and 25 GB of storage
 
+The free tier allows but default to have only one region.
 
 Next enter a name for your table, a primary key and column. For this example, we used freeTest as the name, pkey with a type of integer as the primary key, and name with a type string as an additional column.  Click 'Set as a Shard Key'.
 
