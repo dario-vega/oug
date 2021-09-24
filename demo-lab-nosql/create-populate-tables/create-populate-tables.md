@@ -59,16 +59,6 @@ In this task we are going to create tables using the Cloud Shell, and OCI CLI in
 
 ![](./images/cloud-shell-phoenix.png)
 
-Execute the following in your Cloud Shell.
-
-````
-
-git clone https://github.com/dario-vega/demo-lab-nosql
-sh ~/demo-lab-nosql/data.sh
-cp ~/NoSQLLabPrivateKey.pem  ~/demo-lab-nosql/express-nosql
-cp ~/info.json ~/demo-lab-nosql/express-nosql
-
-````
 
 2. Execute the following environment setup shell script in the Cloud Shell. If you close/open the Cloud Shell Console, please re-execute it.
 
