@@ -24,36 +24,36 @@ Estimated Time: 25 minutes
 
 1. Lets get back into the Cloud Shell.  From the previous lab, you may have minimized it in which case you need to enlarge it.  It is possible it may have become disconnected and/or timed out.   In that case, restart it.
 
-    ![](./images/cloud-shell-phoenix.png)
+![](./images/cloud-shell-phoenix.png)
 
 2. Execute the following environment setup shell script in the Cloud Shell to set up your environment. If you close/open the Cloud Shell Console, please re-execute it.
 
-    ```
+```
     
     source ~/demo-lab-nosql/env.sh
     
-    ```
+```
 
 ## Task 2: Load Data and Examine It
 
 The goal of this task is to understand the difference between the 2 data models used. The demoKeyVal table is a schema-less table, sometimes referred to as a JSON document that contains a primary key and a JSON column.  The demo table contains the primary key, several fixed columns and a JSON column.  Sometimes referred to as a fixed-schema. These tables are logically equivalent. Which data model you use depends on your business model.   Oracle NoSQL Database Cloud Service is extremely flexible in how you can model your data.   It is a true multi-model database service.
 
-  ![](./images/capturemultimodel.png)
+![](./images/capturemultimodel.png)
 
 1. Install the Node.js application.  Execute in the Cloud Shell.
 
-    ```
+```
     
     cd ~/demo-lab-nosql/express-nosql
     npm install
-    node express_oracle_nosql.js &
+    node express-oracle-nosql.js &
     
-    ```
-    **Note:** This will start the "express-oracle-nosql" application in the background.
+ ```
+ **Note:** This will start the "express-oracle-nosql" application in the background.
 
 2. After you complete step 1, you will see a message in the shell saying 'application running'
 
-    ![](./images/appl-running.png)
+![](./images/appl-running.png)
 
     Hit the **'Enter' key** on your keypad to get the command line prompt back.   
 
@@ -61,7 +61,7 @@ The goal of this task is to understand the difference between the 2 data models 
 
   This will be done using a curl command to transfer data over the network to the NoSQL backend using the "express-oracle-nosql" application.  Execute in Cloud Shell.
 
-    ```
+```
     
     FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file99.json`
     curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demo
@@ -74,10 +74,10 @@ The goal of this task is to understand the difference between the 2 data models 
     FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file84.json`
     curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demo
     
-    ```
+```
 4.  Insert data into the demoKeyVal table.  Execute in Cloud Shell.
 
-    ````
+````
     
     FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file99.json`
     curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demoKeyVal
@@ -90,68 +90,68 @@ The goal of this task is to understand the difference between the 2 data models 
     FILE_NAME=`ls -1 ~/BaggageData/baggage_data_file84.json`
     curl -X POST -H "Content-Type: application/json" -d @$FILE_NAME http://localhost:3000/demoKeyVal
     
-    ````
+````
 5.  Read back the data that we just entered.  Execute in the Cloud Shell.  In the second two queries, we use a limit clause which limits the number of rows returned.  We also use an orderby clause to sort the returned results.
 
-    ````
+````
     
     curl -X GET http://localhost:3000/demo  | jq
     
-    ````
+````
 
-    ````
+````
     
     curl  "http://localhost:3000/demo?limit=3&orderby=ticketNo"  | jq
     
-    ````
+````
 
-    ````
+````
     
     curl  "http://localhost:3000/demo?limit=12&orderby=fullName"  | jq
     
-    ````
+````
 6. Read Data for a specific TicketNumber using GET command.  Execute in Cloud Shell.
 
-    ````
+````
     
     curl -X GET http://localhost:3000/demo/1762322446040  | jq
     
-    ````
+````
 7. In the baggage tracking demo from Lab 1, which is running live in all the regions, a Node.js application was running on the background.   We can install that application, and run it on our data.  It uses a different port number than the previous application we installed.  It will also run in the background, so **hit 'Enter'** to get the prompt back.  Execute in Cloud Shell.
 
-    ````
+````
     
     cd ~/demo-lab-nosql/express-nosql
     npm install
-    node express_baggage_demo_nosql.js &
+    node express-baggage-demo-nosql.js &
     
-    ````
+````
 
 8. We can run a query by ticket number and passengers on a flight.  Execute in Cloud Shell.
 
-    ````
+````
     
     curl -X GET http://localhost:3500/getBagInfoByTicketNumber?ticketNo=1762322446040  | jq
     
-    ````
+````
 
-    ````
+````
     
     curl -X GET http://localhost:3500/getBagInfoByTicketNumber  | jq
     
-    ````
+````
 
-    ````
+````
     
     curl -X GET http://localhost:3500/getBagInfoByTicketNumber | jq '. | length'
     
-    ````
+````
 
-    ````
+````
     
     curl -X GET http://localhost:3500/getPassengersAffectedByFlight?flightNo=BM715  | jq
-    
-    ````
+
+````
   Each of these produced slightly different results. The first one display the document with a specific ticket number, the second displayed all the records and the third gave a count of the records.
 
   For the last one,  you can see in the field "message" the getPassengersAffectedByFlight endpoint is still under construction. In other words the code for that endpoint has not been completed yet.
