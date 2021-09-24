@@ -55,14 +55,6 @@ In this task we are going to create tables using the Cloud Shell, and OCI CLI in
 
 ![](./images/cloud-shell-phoenix.png)
 
-Execute the following in your Cloud Shell. {MJB: need to source this from different location}
-
-````
-
-git clone https://github.com/dario-vega/serverless-with-nosql-database.git
-sh ~/serverless-with-nosql-database/data.sh
-
-````
 
 2. Execute the following environment setup shell script in the Cloud Shell. If you close/open the Cloud Shell Console, please re-execute it.
 
