@@ -205,7 +205,7 @@ Execute the steps 1 to 7 provided in this Wizard.  In these steps you will be cu
 
 -In step 6 it will ask for a password, paste in your auth token there.   The cursor may not move, so after you paste then hit enter.  It will say 'Login Succeeded' if it was successful.
 
-## Task 5: Set Up the demo Environment
+## Task 6: Set Up the demo Environment
 
 1. Open the Cloud Shell from the top right menu.  Please make sure you are in the Phoenix region.
 
