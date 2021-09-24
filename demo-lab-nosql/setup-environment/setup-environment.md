@@ -128,30 +128,22 @@ def get_handle():
 ```
 In the next labs we are going to be running application code and we need an instance to run that from.   In Task 2 we started the Cloud Shell and we will run the application from that instance.   Currently, Cloud Shell does not support Instance Principals so in those labs we will be using credentials.
 
-## Task 4: Move to Phoenix
+## Task 4: Set Up the demo Environment
 
-Oracle NoSQL Always Free tables are available only in the Phoenix region.  If Phoenix is **not** your home region then we need to move there.  Skip this Task if Phoenix is your home region.
+1. Open the Cloud Shell from the top right menu.  
 
-1.  Check to see if Phoenix shows up in your region drop down list.  Click the down arrow by the region.
+![](./images/cloud-shell-phoenix.png)
 
-![](images/no-phoenix.png)
+Execute the following in your Cloud Shell.
 
-2.  If it is there, click on it and move your tenancy to Phoenix and **proceed to the next lab.**
+````
 
-![](images/phoenix.png)
+git clone https://github.com/dario-vega/demo-lab-nosql
+sh ~/demo-lab-nosql/data.sh
+cp ~/NoSQLLabPrivateKey.pem  ~/demo-lab-nosql/express-nosql
+cp ~/info.json ~/demo-lab-nosql/express-nosql
 
-3.  Since it is not there, please subscribe to Phoenix Region.  Click on drop down by your region and click on 'Manage Regions'.
-
-![](images/manage-regions.png)
-
-4.  This will bring up a list of regions.  Look for Phoenix and hit 'Subscribe'.
-
-![](images/capturesuscribe.png)
-
-5. If you havent been moved to Phoenix, then click on Phoenix to move your tenancy.
-
-![](images/phoenix.png)
-
+````
 
 You may now **proceed to the next lab.**
 
