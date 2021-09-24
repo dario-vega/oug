@@ -51,25 +51,24 @@ This lab assumes you have:
 
 3. Open the Cloud Shell in the top right menu.  It can take about 2 minutes to get the Cloud Shell started.  
 
-    ![](./images/cloud-shell.png)
+![](./images/cloud-shell.png)
 
-  **Note:** This needs to be executed in the **HOME region**.  Please ensure you are in your home region.  The Cloud Shell prompt shows you what region the shell is running out of.
+**Note:** This needs to be executed in the **HOME region**.  Please ensure you are in your home region.  The Cloud Shell prompt shows you what region the shell is running out of.
 
-  ![](./images/capturecloudshellhomeregion.png)
+![](./images/capturecloudshellhomeregion.png)
 
 4. Execute these commands in your Cloud Shell.  **Replace** "YOURUSEROCID" with your OCID you copied above **before** executing.
 
-    ````
-    
-    openssl genrsa -out NoSQLLabPrivateKey.pem  4096        
-    openssl rsa -pubout -in NoSQLLabPrivateKey.pem -out NoSQLLabPublicKey.pem
-    oci iam user api-key upload --user-id YOURUSEROCID --key-file NoSQLLabPublicKey.pem > info.json
-    
-    ````
-    If you execute the 'oci iam' command before replacing "YOURUSEROCID" then you will get the following error:
-    **"Authorization failed or requested resource not found".**   Replace "YOURUSEROCID" and try the last command again.  
+````
+openssl genrsa -out NoSQLLabPrivateKey.pem  4096        
+openssl rsa -pubout -in NoSQLLabPrivateKey.pem -out NoSQLLabPublicKey.pem
+oci iam user api-key upload --user-id YOURUSEROCID --key-file NoSQLLabPublicKey.pem > info.json
 
-    If you execute the 'oci iam' command and you get this error "ApiKeyLimitExceeded" then you need to delete some keys you already created.  Go to your user details screen, and API Keys to find old keys to delete.
+````
+If you execute the 'oci iam' command before replacing "YOURUSEROCID" then you will get the following error:
+**"Authorization failed or requested resource not found".**   Replace "YOURUSEROCID" and try the last command again.  
+
+If you execute the 'oci iam' command and you get this error "ApiKeyLimitExceeded" then you need to delete some keys you already created.  Go to your user details screen, and API Keys to find old keys to delete.
 
 5. Exit Cloud Shell  
 
@@ -96,13 +95,13 @@ In this node.js snippet, we used the credential information created in Task 2 an
         });
 ````
 
-  Another way to handle authentication is with Instance and Resource Principals.   The Oracle NoSQL SDKs support both of them.  Resource principals are primarily used when authenticating from functions.  We are not using functions in this workshop so we will not discuss those any further.
+Another way to handle authentication is with Instance and Resource Principals.   The Oracle NoSQL SDKs support both of them.  Resource principals are primarily used when authenticating from functions.  We are not using functions in this workshop so we will not discuss those any further.
 
-  Instance Principals is a capability in Oracle Cloud Infrastructure Identity and Access Management (IAM) that lets you make service calls from an instance. With instance principals, you don’t need to configure user credentials or rotate the credentials. Instances themselves are a principal type in IAM and are set up in IAM.  You can think of them as an IAM service feature that enables instances to be authorized actors (or principals) to perform actions on service resources.  
+Instance Principals is a capability in Oracle Cloud Infrastructure Identity and Access Management (IAM) that lets you make service calls from an instance. With instance principals, you don’t need to configure user credentials or rotate the credentials. Instances themselves are a principal type in IAM and are set up in IAM.  You can think of them as an IAM service feature that enables instances to be authorized actors (or principals) to perform actions on service resources.  
 
-  Oracle NoSQL Database Cloud service has three different resource types, namely, nosql-tables, nosql-rows, and nosql-indexes.  It also has one aggregate resource called nosql-family.  Policies are created that allow a group to work in certain ways with specific types of resources such as nosql-tables in a particular compartment.  All NoSQL tables belong to a defined compartment.  In Task 1 of this Lab, we created the demonosql compartment and this is where we will create our tables.  
+Oracle NoSQL Database Cloud service has three different resource types, namely, nosql-tables, nosql-rows, and nosql-indexes.  It also has one aggregate resource called nosql-family.  Policies are created that allow a group to work in certain ways with specific types of resources such as nosql-tables in a particular compartment.  All NoSQL tables belong to a defined compartment.  In Task 1 of this Lab, we created the demonosql compartment and this is where we will create our tables.  
 
-  You can use **Resource Principals** to do the connection to NoSQL Cloud Service as shown below in the Node.js and Python examples instead of specifying the credentials.  Once they are set up, they are very simple to use because all you need to do is call the appropriate authorization constructor.
+You can use **Resource Principals** to do the connection to NoSQL Cloud Service as shown below in the Node.js and Python examples instead of specifying the credentials.  Once they are set up, they are very simple to use because all you need to do is call the appropriate authorization constructor.
 
 In this snippet, there are hard-coded references (eg REGION).
 
@@ -135,23 +134,23 @@ Oracle NoSQL Always Free tables are available only in the Phoenix region.  If Ph
 
 1.  Check to see if Phoenix shows up in your region drop down list.  Click the down arrow by the region.
 
-    ![](images/no-phoenix.png)
+![](images/no-phoenix.png)
 
 2.  If it is there, click on it and move your tenancy to Phoenix and **proceed to the next lab.**
 
-    ![](images/phoenix.png)
+![](images/phoenix.png)
 
 3.  Since it is not there, please subscribe to Phoenix Region.  Click on drop down by your region and click on 'Manage Regions'.
 
-    ![](images/manage-regions.png)
+![](images/manage-regions.png)
 
 4.  This will bring up a list of regions.  Look for Phoenix and hit 'Subscribe'.
 
-    ![](images/capturesuscribe.png)
+![](images/capturesuscribe.png)
 
 5. If you havent been moved to Phoenix, then click on Phoenix to move your tenancy.
 
-    ![](images/phoenix.png)
+![](images/phoenix.png)
 
 
 You may now **proceed to the next lab.**
