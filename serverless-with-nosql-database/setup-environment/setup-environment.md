@@ -82,21 +82,11 @@ If you execute the 'oci iam' command before replacing "YOURUSEROCID" then you wi
 
 ## Task 3: Deploy the PoC Application
 
-1. To deploy the application, we will use a terraform scripts provided for this Lab. Click on the 'Deploy to Oracle Cloud ' button.  This will create a new window in your browser.  {NB: Open a new browser tab}
+1. To deploy the application, we will use a terraform scripts provided for this Lab. Click on the 'Deploy to Oracle Cloud ' button.  This will create a new window in your browser.  {NB: use right click button}
 
-[![Deploy to Oracle Cloud - home](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?region=us-phoenix-1&zipUrl=https://github.com/dario-vega/serverless-with-nosql-database/archive/refs/heads/main.zip)
+[![Deploy to Oracle Cloud - home](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?region=home&zipUrl=https://github.com/dario-vega/serverless-with-nosql-database/archive/refs/heads/main.zip)
 
-Oracle NoSQL Always Free tables are available only in the Phoenix region.  This application will be deployed in the Phoenix Region and if you are not subscribed to that region you will get the following error.  If you are subscribed, then proceed to step 2.
-
-![](images/capturephoenixmissing.png)
-
-Please subscribe to Phoenix Region.  Click on drop down by your region and click on 'Manage Regions'.
-
-![](images/manage-regions.png)
-
-This will bring up a list of regions.  Look for Phoenix and hit 'Subscribe'.
-
-![](images/capturesuscribe.png)
+Oracle NoSQL Always Free tables are available only in the Phoenix region.  This application will be deployed in the Phoenix Region 
 
 2. After successfully hitting the 'Deploy to Oracle Cloud' button, you will be brought to a new screen.
 
@@ -214,6 +204,22 @@ Execute the steps 1 to 7 provided in this Wizard.  In these steps you will be cu
 -In step 5 you do not need to generate another authorization token.  Use the token generated in step 2 and copied down.
 
 -In step 6 it will ask for a password, paste in your auth token there.   The cursor may not move, so after you paste then hit enter.  It will say 'Login Succeeded' if it was successful.
+
+## Task 5: Set Up the demo Environment
+
+1. Open the Cloud Shell from the top right menu.  Please make sure you are in the Phoenix region.
+
+![](./images/cloud-shell-phoenix.png)
+
+Execute the following in your Cloud Shell.
+
+````
+
+git clone https://github.com/dario-vega/serverless-with-nosql-database.git
+sh ~/serverless-with-nosql-database/data.sh
+
+````
+
 
 You may now **proceed to the next lab.**
 
