@@ -30,11 +30,18 @@ Estimated Time: 25 minutes
 
 This screen allows you to create tables in one of two different ways, either using simple input or using DDL input.  For this Lab we are going to use the simple input method.  
 
-3. The first thing you want to do is click the 'Always Free Configuration' toggle button.  This will create an always free table.   Each tenancy is allowed 3 always free tables.  Always free tables have fixed provisioning at 50 read units, 50 write units and 25 GB of storage. NoSQL always free tables are only available in the Phoenix region and you need to be in the correct region to use them.  The toggle button only shows up in the Phoenix region.
+3. The first thing you want to do is click the 'Always Free Configuration' toggle button.  This will create an always free table.   Each tenancy is allowed 3 always free tables.  Always free tables have fixed provisioning at 50 read units, 50 write units and 25 GB of storage. NoSQL always free tables are only available in the **Phoenix region** and you need to be in the correct region to use them.  The toggle button only shows up in the Phoenix region.
 
 ![](./images/always-free.png)
 
-Clicking on the 'Always Free Configuration' button grays out the boxes to input provisioning.  Next enter a name for your table, a primary key and column. For this example, we used freeTest as the name, pkey with a type of integer as the primary key, and name with a type string as an additional column.  Click 'Set as a Shard Key'.
+Clicking on the 'Always Free Configuration' button grays out the boxes to input provisioning.  
+
+If you are not in Phoenix
+
+Please set the following values in the boxes to input provisioning: 50 read units, 50 write units and 25 GB of storage
+
+
+Next enter a name for your table, a primary key and column. For this example, we used freeTest as the name, pkey with a type of integer as the primary key, and name with a type string as an additional column.  Click 'Set as a Shard Key'.
 
 4. When done with inputs click on 'Create Table' at the bottom.
 
