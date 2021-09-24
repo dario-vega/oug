@@ -82,7 +82,7 @@ If you execute the 'oci iam' command before replacing "YOURUSEROCID" then you wi
 
 ## Task 3: Deploy the PoC Application
 
-1. To deploy the application, we will use a terraform scripts provided for this Lab. Click on the 'Deploy to Oracle Cloud ' button.  This will create a new window in your browser.  {MJB: NEED TO DEPLOY FROM OBJECT STORAGE}
+1. To deploy the application, we will use a terraform scripts provided for this Lab. Click on the 'Deploy to Oracle Cloud ' button.  This will create a new window in your browser.  {NB: Open a new browser tab}
 
 [![Deploy to Oracle Cloud - home](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?region=us-phoenix-1&zipUrl=https://github.com/dario-vega/serverless-with-nosql-database/archive/refs/heads/main.zip)
 
