@@ -20,8 +20,6 @@ Estimated Time: 25 minutes
 
 ## Task 1: Create an Oracle NoSQL Table With the Console
 
-## Task 1: Create an Oracle NoSQL Table With the Console
-
 1. On the OCI menu drop down on the left, go to Databases and then hit 'Tables' under Oracle NoSQL Database.  This brings you to the 'Table' screen where you can create a table from the console.
 
 ![](./images/nosql-tables.png)
