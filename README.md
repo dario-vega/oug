@@ -29,6 +29,10 @@ In this workshop you will:
 Estimated Time: 50 Minutes
 
 ### Additional steps will be provided by the instructor
+* Create the Stream
+* Create and configure the Service Connector
+* Create and configure the API Gateway
+* Execute the API and Streaming tests
 
 ## demo-lab-nosql
 
