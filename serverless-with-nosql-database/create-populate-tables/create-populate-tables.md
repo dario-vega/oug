@@ -87,7 +87,7 @@ echo $DDL_TABLE
 oci nosql table create --compartment-id "$COMP_ID"   \
 --name demo --ddl-statement "$DDL_TABLE" \
 --is-auto-reclaimable $NOSQL_ALWAYS_FREE \
---table-limits="{\"maxReadUnits\": 50,  \"maxStorageInGBs\": 25,  \"maxWriteUnits\": 50 }"
+--table-limits="{\"maxReadUnits\": 50,  \"maxStorageInGBs\": 25,  \"maxWriteUnits\": 50 }" \
 --wait-for-state SUCCEEDED --wait-for-state FAILED
 
 ```
@@ -102,7 +102,7 @@ echo $DDL_TABLE
 oci nosql table create --compartment-id "$COMP_ID"   \
 --name demoKeyVal  --ddl-statement "$DDL_TABLE" \
 --is-auto-reclaimable $NOSQL_ALWAYS_FREE \
---table-limits="{\"maxReadUnits\": 50,  \"maxStorageInGBs\": 25,  \"maxWriteUnits\": 50 }"
+--table-limits="{\"maxReadUnits\": 50,  \"maxStorageInGBs\": 25,  \"maxWriteUnits\": 50 }" \
 --wait-for-state SUCCEEDED --wait-for-state FAILED
 
 ```
